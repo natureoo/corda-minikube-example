@@ -4,9 +4,9 @@ Scripts and configuration to run the [cordapp-example](https://github.com/corda/
 
 Follow the steps below to get started.
 ```
-eval $(minikube docker-env)
-./build-container.sh
-./start.sh
+alias kubectl="minikube kubectl --"
+./build.sh
+./deploy.sh
 minikube service party-a
 ./stop.sh
 ```
