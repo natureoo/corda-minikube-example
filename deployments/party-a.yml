@@ -26,8 +26,8 @@ spec:
           readOnly: true
         - name: certificates
           mountPath: /app/certificates
-        - name: cordapps
-          mountPath: /app/cordapps
+#        - name: cordapps
+#          mountPath: /app/cordapps
 #      - name: web
 #        image: corda:4.8
 #        args: ["web"]
@@ -48,6 +48,6 @@ spec:
       - name: config
         configMap:
           name: corda
-      - name: cordapps
-        hostPath:
-          path: /home/feil_zou/corda4/corda-minikube-example/cordapps
+#      - name: cordapps
+#        hostPath:
+#          path: /home/feil_zou/corda4/corda-minikube-example/cordapps
