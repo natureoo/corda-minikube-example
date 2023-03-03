@@ -50,4 +50,4 @@ spec:
           name: corda
       - name: cordapps
         hostPath:
-          path: ../cordapps
+          path: /home/feil_zou/corda4/corda-minikube-example/cordapps
