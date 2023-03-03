@@ -26,23 +26,23 @@ spec:
           readOnly: true
         - name: certificates
           mountPath: /app/certificates
-      - name: web
-        image: corda:4.8
-        args: ["web"]
-        env:
-        - name: "CONFIG_FILE"
-          value: "/config/party-c.conf"
-        ports:
-        - containerPort: 10004
-        volumeMounts:
-        - name: config
-          mountPath: /config
-          readOnly: true
-        - name: certificates
-          mountPath: /app/certificates
-      volumes:
-      - name: certificates
-        emptyDir: {}
-      - name: config
-        configMap:
-          name: corda
+#      - name: web
+#        image: corda:4.8
+#        args: ["web"]
+#        env:
+#        - name: "CONFIG_FILE"
+#          value: "/config/party-c.conf"
+#        ports:
+#        - containerPort: 10004
+#        volumeMounts:
+#        - name: config
+#          mountPath: /config
+#          readOnly: true
+#        - name: certificates
+#          mountPath: /app/certificates
+#      volumes:
+#      - name: certificates
+#        emptyDir: {}
+#      - name: config
+#        configMap:
+#          name: corda

@@ -8,8 +8,8 @@ spec:
     - name: p2p
       port: 10002
       targetPort: 10002
-    - name: web
-      port: 10004
-      targetPort: 10004
+#    - name: web
+#      port: 10004
+#      targetPort: 10004
   selector:
     app: party-b
