@@ -8,7 +8,8 @@ set -eux
 
 #exec java -jar corda-webserver.jar --config-file=${CONFIG_FILE} --log-to-console
 cd /app
-mkdir certificates && cd certificates
+#mkdir certificates && cd certificates
+cd certificates
 curl http://host.minikube.internal:8080/network-map/truststore -o ./network-truststore.jks
 cd /app
 echo "$PWD"

@@ -40,9 +40,9 @@ spec:
 #          readOnly: true
 #        - name: certificates
 #          mountPath: /app/certificates
-#      volumes:
-#      - name: certificates
-#        emptyDir: {}
-#      - name: config
-#        configMap:
-#          name: corda
+      volumes:
+      - name: certificates
+        emptyDir: {}
+      - name: config
+        configMap:
+          name: corda
