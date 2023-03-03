@@ -49,5 +49,5 @@ spec:
         configMap:
           name: corda
       - name: cordapps
-          hostPath:
-            path: ../cordapps
+        hostPath:
+          path: ../cordapps
