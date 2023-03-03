@@ -23,5 +23,5 @@ COPY entrypoint.sh /app/entrypoint.sh
 
 WORKDIR /app
 
-#ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
-CMD exec /bin/bash -c "trap : TERM INT; sleep 9999999999d & wait"
+ENTRYPOINT ["/bin/sh", "/entrypoint.sh"]
+#CMD exec /bin/bash -c "trap : TERM INT; sleep 9999999999d & wait"
