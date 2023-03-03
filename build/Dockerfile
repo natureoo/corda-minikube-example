@@ -7,7 +7,7 @@ FROM azul/zulu-openjdk-alpine:8u192
 COPY corda-4.8.jar /app/corda.jar
 COPY corda-webserver-4.1.jar /app/corda-webserver.jar
 COPY corda-finance-3.4-corda.jar /app/plugins/corda-finance.jar
-COPY cordapps /app/cordapps
+COPY cordapps/* /app/cordapps/
 
 #RUN echo -e "http://nl.alpinelinux.org/alpine/v3.8/main\nhttp://nl.alpinelinux.org/alpine/v3.8/community" > /etc/apk/repositories
 #RUN echo -e "http://nl.alpinelinux.org/alpine/v3.5/main\nhttp://nl.alpinelinux.org/alpine/v3.5/community" > /etc/apk/repositories
