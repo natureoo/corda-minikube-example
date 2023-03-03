@@ -12,7 +12,7 @@ COPY corda-finance-3.4-corda.jar /app/plugins/corda-finance.jar
 #RUN echo -e "http://nl.alpinelinux.org/alpine/v3.5/main\nhttp://nl.alpinelinux.org/alpine/v3.5/community" > /etc/apk/repositories
 #
 RUN apk upgrade --update && \
-    apk add --update --no-cache bash curl busybox-extras net-tools netstat iputils nfs-utils nss curl netcat-openbsd lftp openssh-client openssh-server jq && \
+    apk add --update --no-cache bash curl busybox-extras net-tools iputils nfs-utils nss curl netcat-openbsd lftp openssh-client openssh-server jq && \
 #    apk add --update --no-cache curl && \
     rm -rf /var/cache/apk/*
 
