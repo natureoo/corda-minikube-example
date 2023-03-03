@@ -27,7 +27,7 @@ spec:
         - name: certificates
           mountPath: /app/certificates
         - name: cordapps
-            mountPath: /app/cordapps
+          mountPath: /app/cordapps
 #      - name: web
 #        image: corda:4.8
 #        args: ["web"]
