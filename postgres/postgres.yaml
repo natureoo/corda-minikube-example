@@ -23,6 +23,9 @@ kind: Deployment
 metadata:
   name: postgres
 spec:
+  selector:
+    matchLabels:
+      app: postgres
   template:
     metadata:
       labels:
