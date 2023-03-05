@@ -23,11 +23,11 @@ template:
     imagePullPolicy: "IfNotPresent"
     env:
       - name: POSTGRES_DB
-      value: party_a
-        - name: POSTGRES_USER
+      value: northwind
+      - name: POSTGRES_USER
       value: postgres
-        - name: POSTGRES_PASSWORD
-      value: 123456
+      - name: POSTGRES_PASSWORD
+      value: changeme
     ports:
       - containerPort: 5432
       name: postgresql
@@ -35,13 +35,13 @@ template:
       - name: postgresql-claim0
       mountPath: /var/lib/postgresql/data
 
-        - mountPath: /docker-entrypoint-initdb.d
+      - mountPath: /docker-entrypoint-initdb.d
       name: postgresql-initdb
   volumes:
     - name: postgresql-claim0
     persistentVolumeClaim:
       claimName: postgresql-claim0
 
-      - name: postgresql-initdb
+#    - name: postgresql-initdb
 #    configMap:
 #      name: postgresql-initdb-config
