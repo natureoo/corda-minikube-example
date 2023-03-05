@@ -14,4 +14,5 @@ curl http://host.minikube.internal:8080/network-map/truststore -o ./network-trus
 cd /app
 echo "$PWD"
 java -jar corda.jar --config-file=${CONFIG_FILE} --initial-registration --base-directory /app --network-root-truststore ./certificates/network-truststore.jks --network-root-truststore-password trustpass
+java -jar corda.jar --config-file=${CONFIG_FILE} run-migration-scripts --core-schemas --app-schemas --allow-hibernate-to-manage-app-schema
 java -jar corda.jar --config-file=${CONFIG_FILE}
