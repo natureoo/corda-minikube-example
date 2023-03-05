@@ -6,6 +6,7 @@ metadata:
 data:
   postgres_user: admin
   postgres_password: "123456"
+  postgres_db: "party-a"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -49,6 +50,11 @@ spec:
                 configMapKeyRef:
                   name: postgres-config
                   key: postgres_password
+            - name: POSTGRES_DB
+                valueFrom:
+                  configMapKeyRef:
+                    name: postgres-config
+                    key: postgres_db
             - name: PGDATA
               value: /var/lib/postgresql/data/pgdata
           ports:
