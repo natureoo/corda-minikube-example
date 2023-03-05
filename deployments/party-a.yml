@@ -22,7 +22,7 @@ spec:
         - containerPort: 10002
         volumeMounts:
         - name: config
-          mountPath: /app
+          mountPath: /config
           readOnly: true
         - name: certificates
           mountPath: /app/certificates
