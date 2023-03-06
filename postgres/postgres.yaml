@@ -46,7 +46,7 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/home/feil_zou/corda4/volume/postgres/party-a/data"
+    path: "/data/postgres/party-a/data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
