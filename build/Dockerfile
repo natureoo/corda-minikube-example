@@ -5,6 +5,7 @@ FROM azul/zulu-openjdk-alpine:8u192
 #ADD https://repo1.maven.org/maven2/net/corda/corda-finance/3.4-corda/corda-finance-3.4-corda.jar /app/plugins/corda-finance.jar
 
 COPY corda-4.8.jar /app/corda.jar
+COPY corda-4.8.jar /app/drivers/corda.jar
 COPY corda-webserver-4.1.jar /app/corda-webserver.jar
 COPY corda-finance-3.4-corda.jar /app/plugins/corda-finance.jar
 COPY cordapps /app/cordapps/
