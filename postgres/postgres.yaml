@@ -8,16 +8,57 @@ data:
   postgres_password: "123456"
   postgres_db: "party-a"
 ---
+#apiVersion: v1
+#kind: PersistentVolumeClaim
+#metadata:
+#  name: postgres-pv-claim
+#spec:
+#  accessModes:
+#    - ReadWriteOnce
+#  resources:
+#    requests:
+#      storage: 2Gi
+#---
+#apiVersion: v1
+#kind: PersistentVolume
+#metadata:
+#  name: postgresql-claim0
+#labels:
+#  type: local
+#spec:
+#  storageClassName: manual
+#capacity:
+#  storage: 1Gi
+#accessModes:
+#  - ReadWriteOnce
+#hostPath:
+#  path: "/home/feil_zou/corda4/volume/postgres/party-a/data"
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: postgres-pv-volume
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/home/feil_zou/corda4/volume/postgres/party-a/data"
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: postgres-pv-claim
 spec:
+  storageClassName: manual
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 2Gi
+      storage: 1Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -32,10 +73,10 @@ spec:
       labels:
         app: postgres
     spec:
-      volumes:
-        - name: postgres-storage
-          persistentVolumeClaim:
-            claimName: postgres-pv-claim
+#      volumes:
+#        - name: postgres-storage
+#          persistentVolumeClaim:
+#            claimName: postgres-pv-claim
       containers:
         - image: postgres
           name: postgres
@@ -55,14 +96,18 @@ spec:
                 configMapKeyRef:
                   name: postgres-config
                   key: postgres_db
-            - name: PGDATA
-              value: /var/lib/postgresql/data/pgdata
+#            - name: PGDATA
+#              value: /var/lib/postgresql/data/pgdata
           ports:
             - containerPort: 5432
               name: postgres
           volumeMounts:
-            - name: postgres-storage
-              mountPath: "/home/feil_zou/corda4/volume/postgres/party-a/data"
+            - name: postgres-persistent-storage
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-persistent-storage
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim
 ---
 apiVersion: v1
 kind: Service
