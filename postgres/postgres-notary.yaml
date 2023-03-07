@@ -49,18 +49,18 @@ spec:
             - name: POSTGRES_USER
               valueFrom:
                 configMapKeyRef:
-                  name: postgres-config
-                  key: postgres_user_notary
+                  name: postgres-config-notary
+                  key: postgres_user
             - name: POSTGRES_PASSWORD
               valueFrom:
                 configMapKeyRef:
-                  name: postgres-config
-                  key: postgres_password_notary
+                  name: postgres-config-notary
+                  key: postgres_password
             - name: POSTGRES_DB
               valueFrom:
                 configMapKeyRef:
-                  name: postgres-config
-                  key: postgres_db_notary
+                  name: postgres-config-notary
+                  key: postgres_db
           #            - name: PGDATA
           #              value: /var/lib/postgresql/data/pgdata
           ports:
