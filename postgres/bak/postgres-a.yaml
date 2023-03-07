@@ -73,10 +73,10 @@ spec:
       labels:
         app: postgres_a
     spec:
-#      volumes:
-#        - name: postgres-storage
-#          persistentVolumeClaim:
-#            claimName: postgres-pv-claim
+      #      volumes:
+      #        - name: postgres-storage
+      #          persistentVolumeClaim:
+      #            claimName: postgres-pv-claim
       containers:
         - image: postgres
           name: postgres_a
@@ -96,8 +96,8 @@ spec:
                 configMapKeyRef:
                   name: postgres-config
                   key: postgres_db_a
-#            - name: PGDATA
-#              value: /var/lib/postgresql/data/pgdata
+          #            - name: PGDATA
+          #              value: /var/lib/postgresql/data/pgdata
           ports:
             - containerPort: 5432
               name: postgres_a
