@@ -22,11 +22,11 @@
 #accessModes:
 #  - ReadWriteOnce
 #hostPath:
-#  path: "/home/feil_zou/corda4/volume/postgres/party-a/data"
+#  path: "/home/feil_zou/corda4/volume/postgres/party-b/data"
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: postgres-pv-volume-a
+  name: postgres-pv-volume-b
   labels:
     type: local
 spec:
@@ -36,12 +36,12 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/data/postgres/party-a/data"
+    path: "/data/postgres/party-b/data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: postgres-pv-claim-a
+  name: postgres-pv-claim-b
 spec:
   storageClassName: manual
   accessModes:
@@ -53,15 +53,15 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-a
+  name: postgres-b
 spec:
   selector:
     matchLabels:
-      app: postgres-a
+      app: postgres-b
   template:
     metadata:
       labels:
-        app: postgres-a
+        app: postgres-b
     spec:
       #      volumes:
       #        - name: postgres-storage
@@ -69,43 +69,43 @@ spec:
       #            claimName: postgres-pv-claim
       containers:
         - image: postgres
-          name: postgres-a
+          name: postgres-b
           env:
             - name: POSTGRES_USER
               valueFrom:
                 configMapKeyRef:
                   name: postgres-config
-                  key: postgres_user_a
+                  key: postgres_user_b
             - name: POSTGRES_PASSWORD
               valueFrom:
                 configMapKeyRef:
                   name: postgres-config
-                  key: postgres_password_a
+                  key: postgres_password_b
             - name: POSTGRES_DB
               valueFrom:
                 configMapKeyRef:
                   name: postgres-config
-                  key: postgres_db_a
+                  key: postgres_db_b
           #            - name: PGDATA
           #              value: /var/lib/postgresql/data/pgdata
           ports:
             - containerPort: 5432
-              name: postgres-a
+              name: postgres-b
           volumeMounts:
-            - name: postgres-persistent-storage-a
+            - name: postgres-persistent-storage-b
               mountPath: /var/lib/postgresql/data
       volumes:
-        - name: postgres-persistent-storage-a
+        - name: postgres-persistent-storage-b
           persistentVolumeClaim:
-            claimName: postgres-pv-claim-a
+            claimName: postgres-pv-claim-b
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-a
+  name: postgres-b
 spec:
   type: ClusterIP
   ports:
     - port: 5432
   selector:
-    app: postgres-a
+    app: postgres-b

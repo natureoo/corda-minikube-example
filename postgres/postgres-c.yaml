@@ -22,11 +22,11 @@
 #accessModes:
 #  - ReadWriteOnce
 #hostPath:
-#  path: "/home/feil_zou/corda4/volume/postgres/party-a/data"
+#  path: "/home/feil_zou/corda4/volume/postgres/party-c/data"
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: postgres-pv-volume-a
+  name: postgres-pv-volume-c
   labels:
     type: local
 spec:
@@ -36,12 +36,12 @@ spec:
   accessModes:
     - ReadWriteOnce
   hostPath:
-    path: "/data/postgres/party-a/data"
+    path: "/data/postgres/party-c/data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: postgres-pv-claim-a
+  name: postgres-pv-claim-c
 spec:
   storageClassName: manual
   accessModes:
@@ -53,15 +53,15 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-a
+  name: postgres-c
 spec:
   selector:
     matchLabels:
-      app: postgres-a
+      app: postgres-c
   template:
     metadata:
       labels:
-        app: postgres-a
+        app: postgres-c
     spec:
       #      volumes:
       #        - name: postgres-storage
@@ -69,43 +69,43 @@ spec:
       #            claimName: postgres-pv-claim
       containers:
         - image: postgres
-          name: postgres-a
+          name: postgres-c
           env:
             - name: POSTGRES_USER
               valueFrom:
                 configMapKeyRef:
                   name: postgres-config
-                  key: postgres_user_a
+                  key: postgres_user_c
             - name: POSTGRES_PASSWORD
               valueFrom:
                 configMapKeyRef:
                   name: postgres-config
-                  key: postgres_password_a
+                  key: postgres_password_c
             - name: POSTGRES_DB
               valueFrom:
                 configMapKeyRef:
                   name: postgres-config
-                  key: postgres_db_a
+                  key: postgres_db_c
           #            - name: PGDATA
           #              value: /var/lib/postgresql/data/pgdata
           ports:
             - containerPort: 5432
-              name: postgres-a
+              name: postgres-c
           volumeMounts:
-            - name: postgres-persistent-storage-a
+            - name: postgres-persistent-storage-c
               mountPath: /var/lib/postgresql/data
       volumes:
-        - name: postgres-persistent-storage-a
+        - name: postgres-persistent-storage-c
           persistentVolumeClaim:
-            claimName: postgres-pv-claim-a
+            claimName: postgres-pv-claim-c
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-a
+  name: postgres-c
 spec:
   type: ClusterIP
   ports:
     - port: 5432
   selector:
-    app: postgres-a
+    app: postgres-c

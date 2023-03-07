@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  namespace: default
+data:
+  postgres_user_a: admin
+  postgres_password_a: "123456"
+  postgres_db_a: "party-a"
+  postgres_user_b: admin
+  postgres_password_b: "123456"
+  postgres_db_b: "party-b"
+  postgres_user_c: admin
+  postgres_password_c: "123456"
+  postgres_db_c: "party-c"
