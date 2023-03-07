@@ -15,4 +15,4 @@ data:
   postgres_db_c: "party-c"
   postgres_user_notary: admin
   postgres_password_notary: "123456"
-  postgres_db_notary: "notary-one"
+  postgres_db_notary: "notary"
