@@ -13,6 +13,6 @@ data:
   postgres_user_c: admin
   postgres_password_c: "123456"
   postgres_db_c: "party-c"
-  postgres_user_notary_one: admin
-  postgres_password_notary_one: "123456"
-  postgres_db_notary_one: "notary-one"
+  postgres_user_notary: admin
+  postgres_password_notary: "123456"
+  postgres_db_notary: "notary-one"

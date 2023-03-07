@@ -1,23 +1,23 @@
 apiVersion: "apps/v1"
 kind: Deployment
 metadata:
-  name: notary-one
+  name: notary
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: notary-one
+      app: notary
   template:
     metadata:
       labels:
-        app: notary-one
+        app: notary
     spec:
       containers:
       - name: node
         image: corda:4.8
         env:
         - name: "CONFIG_FILE"
-          value: "/config/notary-one.conf"
+          value: "/config/notary.conf"
         ports:
         - containerPort: 10002
         volumeMounts:
@@ -33,7 +33,7 @@ spec:
 #        args: ["web"]
 #        env:
 #        - name: "CONFIG_FILE"
-#          value: "/config/notary-one.conf"
+#          value: "/config/notary.conf"
 #        ports:
 #        - containerPort: 10004
 #        volumeMounts:
