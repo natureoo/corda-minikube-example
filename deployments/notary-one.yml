@@ -1,0 +1,53 @@
+apiVersion: "apps/v1"
+kind: Deployment
+metadata:
+  name: notary-one
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: notary-one
+  template:
+    metadata:
+      labels:
+        app: notary-one
+    spec:
+      containers:
+      - name: node
+        image: corda:4.8
+        env:
+        - name: "CONFIG_FILE"
+          value: "/config/notary-one.conf"
+        ports:
+        - containerPort: 10002
+        volumeMounts:
+        - name: config
+          mountPath: /config
+          readOnly: true
+        - name: certificates
+          mountPath: /app/certificates
+#        - name: cordapps
+#          mountPath: /app/cordapps
+#      - name: web
+#        image: corda:4.8
+#        args: ["web"]
+#        env:
+#        - name: "CONFIG_FILE"
+#          value: "/config/notary-one.conf"
+#        ports:
+#        - containerPort: 10004
+#        volumeMounts:
+#        - name: config
+#          mountPath: /config
+#          readOnly: true
+#        - name: certificates
+#          mountPath: /app/certificates
+      volumes:
+      - name: certificates
+        emptyDir: {}
+      - name: config
+        configMap:
+          name: corda
+#      - name: cordapps
+#        hostPath:
+#          path: /home/feil_zou/corda4/corda-minikube-example/cordapps

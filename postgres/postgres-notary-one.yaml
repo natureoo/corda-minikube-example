@@ -1,0 +1,86 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: postgres-pv-volume-notary-one
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/postgres/notary-one/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pv-claim-notary-one
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-notary-one
+spec:
+  selector:
+    matchLabels:
+      app: postgres-notary-one
+  template:
+    metadata:
+      labels:
+        app: postgres-notary-one
+    spec:
+      #      volumes:
+      #        - name: postgres-storage
+      #          persistentVolumeClaim:
+      #            claimName: postgres-pv-claim
+      containers:
+        - image: postgres
+          name: postgres-notary-one
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: postgres_user_notary_one
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: postgres_password_notary_one
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres-config
+                  key: postgres_db_notary_one
+          #            - name: PGDATA
+          #              value: /var/lib/postgresql/data/pgdata
+          ports:
+            - containerPort: 5432
+              name: postgres-notary-one
+          volumeMounts:
+            - name: postgres-persistent-storage-notary-one
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-persistent-storage-notary-one
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim-notary-one
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-notary-one
+spec:
+  type: ClusterIP
+  ports:
+    - port: 5432
+  selector:
+    app: postgres-notary-one
