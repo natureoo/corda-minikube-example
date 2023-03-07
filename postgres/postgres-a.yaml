@@ -63,15 +63,15 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres_a
+  name: postgres-a
 spec:
   selector:
     matchLabels:
-      app: postgres_a
+      app: postgres-a
   template:
     metadata:
       labels:
-        app: postgres_a
+        app: postgres-a
     spec:
       #      volumes:
       #        - name: postgres-storage
@@ -79,7 +79,7 @@ spec:
       #            claimName: postgres-pv-claim
       containers:
         - image: postgres
-          name: postgres_a
+          name: postgres-a
           env:
             - name: POSTGRES_USER
               valueFrom:
@@ -100,7 +100,7 @@ spec:
           #              value: /var/lib/postgresql/data/pgdata
           ports:
             - containerPort: 5432
-              name: postgres_a
+              name: postgres-a
           volumeMounts:
             - name: postgres-persistent-storage-a
               mountPath: /var/lib/postgresql/data
@@ -112,10 +112,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres_a
+  name: postgres-a
 spec:
   type: ClusterIP
   ports:
     - port: 5432
   selector:
-    app: postgres_a
+    app: postgres-a
