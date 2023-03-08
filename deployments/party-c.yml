@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: node
-        image: corda:4.8
+        image: corda:4.10
         env:
         - name: "CONFIG_FILE"
           value: "/config/party-c.conf"
@@ -27,7 +27,7 @@ spec:
         - name: certificates
           mountPath: /app/certificates
 #      - name: web
-#        image: corda:4.8
+#        image: corda:4.10
 #        args: ["web"]
 #        env:
 #        - name: "CONFIG_FILE"

@@ -1,2 +1,2 @@
 cd build
-docker build -t corda:4.8 .
+docker build -t corda:4.10 .

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: controller
-        image: corda:4.8
+        image: corda:4.10
         env:
         - name: "CONFIG_FILE"
           value: "/config/controller.conf"
