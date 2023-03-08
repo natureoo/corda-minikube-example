@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: postgres-config-notary
+  name: postgres-config-n1
   namespace: default
 data:
   postgres_user: admin

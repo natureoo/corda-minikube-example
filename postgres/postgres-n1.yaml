@@ -1,22 +1,7 @@
-kind: PersistentVolume
-apiVersion: v1
-metadata:
-  name: postgres-pv-volume-notary
-  labels:
-    type: local
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 1Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/data/postgres/party-notary/data"
----
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: postgres-pv-claim-notary
+  name: postgres-pv-claim-n1
 spec:
   storageClassName: manual
   accessModes:
@@ -28,15 +13,15 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-notary
+  name: postgres-n1
 spec:
   selector:
     matchLabels:
-      app: postgres-notary
+      app: postgres-n1
   template:
     metadata:
       labels:
-        app: postgres-notary
+        app: postgres-n1
     spec:
       #      volumes:
       #        - name: postgres-storage
@@ -44,43 +29,43 @@ spec:
       #            claimName: postgres-pv-claim
       containers:
         - image: postgres
-          name: postgres-notary
+          name: postgres-n1
           env:
             - name: POSTGRES_USER
               valueFrom:
                 configMapKeyRef:
-                  name: postgres-config-notary
+                  name: postgres-config-n1
                   key: postgres_user
             - name: POSTGRES_PASSWORD
               valueFrom:
                 configMapKeyRef:
-                  name: postgres-config-notary
+                  name: postgres-config-n1
                   key: postgres_password
             - name: POSTGRES_DB
               valueFrom:
                 configMapKeyRef:
-                  name: postgres-config-notary
+                  name: postgres-config-n1
                   key: postgres_db
           #            - name: PGDATA
           #              value: /var/lib/postgresql/data/pgdata
           ports:
             - containerPort: 5432
-              name: postgres-notary
+              name: postgres-n1
           volumeMounts:
-            - name: postgres-persistent-storage-notary
+            - name: postgres-persistent-storage-n1
               mountPath: /var/lib/postgresql/data
       volumes:
-        - name: postgres-persistent-storage-notary
+        - name: postgres-persistent-storage-n1
           persistentVolumeClaim:
-            claimName: postgres-pv-claim-notary
+            claimName: postgres-pv-claim-n1
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: postgres-notary
+  name: postgres-n1
 spec:
   type: ClusterIP
   ports:
     - port: 5432
   selector:
-    app: postgres-notary
+    app: postgres-n1
