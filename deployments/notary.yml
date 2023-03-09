@@ -18,6 +18,8 @@ spec:
         env:
         - name: "CONFIG_FILE"
           value: "/config/notary.conf"
+        - name: "ROLE"
+          value: "NOTARY"
         ports:
         - containerPort: 10002
         volumeMounts:
