@@ -11,7 +11,7 @@ spec:
   accessModes:
     - ReadOnlyMany
   hostPath:
-    path: "/data/postgres/party-c/data"
+    path: "/var/log/data/postgres/party-c/data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

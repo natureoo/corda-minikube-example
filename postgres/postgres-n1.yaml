@@ -11,7 +11,7 @@ spec:
   accessModes:
     - ReadOnlyMany
   hostPath:
-    path: "/data/postgres/notary/data"
+    path: "/var/log/data/postgres/notary/data"
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
