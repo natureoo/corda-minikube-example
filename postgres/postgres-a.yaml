@@ -9,7 +9,7 @@ spec:
   capacity:
     storage: 1Gi
   accessModes:
-    - ReadWriteOnce
+    - ReadOnlyMany
   hostPath:
     path: "/data/postgres/party-a/data"
 ---
@@ -20,7 +20,7 @@ metadata:
 spec:
   storageClassName: manual
   accessModes:
-    - ReadWriteOnce
+    - ReadOnlyMany
   resources:
     requests:
       storage: 1Gi
