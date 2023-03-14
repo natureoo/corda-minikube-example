@@ -1,30 +1,30 @@
-#kind: PersistentVolume
-#apiVersion: v1
-#metadata:
-#  name: postgres-pv-volume-b
-#  labels:
-#    type: local
-#spec:
-#  storageClassName: manual
-#  capacity:
-#    storage: 1Gi
-#  accessModes:
-#    - ReadOnlyMany
-#  hostPath:
-#    path: "/var/log/data/postgres/party-b/data"
-#---
-#apiVersion: v1
-#kind: PersistentVolumeClaim
-#metadata:
-#  name: postgres-pv-claim-b
-#spec:
-#  storageClassName: manual
-#  accessModes:
-#    - ReadOnlyMany
-#  resources:
-#    requests:
-#      storage: 1Gi
-#---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: postgres-pv-volume-b
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadOnlyMany
+  hostPath:
+    path: "/var/log/data/postgres/party-b/data"
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-pv-claim-b
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadOnlyMany
+  resources:
+    requests:
+      storage: 1Gi
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -66,13 +66,13 @@ spec:
           ports:
             - containerPort: 5432
               name: postgres-b
-#          volumeMounts:
-#            - name: postgres-persistent-storage-b
-#              mountPath: /var/lib/postgresql/data
-#      volumes:
-#        - name: postgres-persistent-storage-b
-#          persistentVolumeClaim:
-#            claimName: postgres-pv-claim-b
+          volumeMounts:
+            - name: postgres-persistent-storage-b
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-persistent-storage-b
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim-b
 ---
 apiVersion: v1
 kind: Service
