@@ -24,12 +24,6 @@ sudo ip link set docker0 promisc on
 ```
 
 
-nature.j.chen@noexternalmail.hsbc.com
-Jian Chen对所有人说 (下午5:35)
-email: dickson.t.s.chow@hsbc.com.hk
-
-password: Hsbc1234
-
 docker run  -id  --name=network-map-service -e NMS_ROOT_CA_FILE_PATH="" -p 8080:8080 cordite/network-map:latest
 
 #Use docker images
