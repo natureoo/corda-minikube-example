@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: controller
-        image: corda:4.10
+        image: europe-west2-docker.pkg.dev/canvas-hook-339503/corda/corda:4.10
         env:
         - name: "CONFIG_FILE"
           value: "/config/controller.conf"
