@@ -249,3 +249,9 @@ gcloud container clusters get-credentials autopilot-cluster-1 --region europe-we
 Retrieve your current kubectl context (this should have been set by the previous gcloud command):
 kubectl config current-context
 
+
+kubectl create -f filestore-example-class.yaml
+
+kubectl create -f pvc-example.yaml
+
+kubectl apply -f filestore-example-deployment.yaml
