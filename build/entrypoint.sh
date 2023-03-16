@@ -19,7 +19,7 @@ mv bak/*.jar cordapps/
 java -jar corda.jar run-migration-scripts --config-file=${CONFIG_FILE} --core-schemas --app-schemas --allow-hibernate-to-manage-app-schema
 
 #echo $ROLE
-#if [[ ! -z "${ROLE}" &&  "NOTARY" = ${ROLE} ]]; then
+#if [[ "NOTARY" = ${ROLE} ]]; then
 #    TOKEN=`curl -X POST "http://34.76.103.90:8080/admin/api/login" -H  "accept: text/plain" -H  "Content-Type: application/json" -d "{  \"user\": \"sa\",  \"password\": \"admin\"}"`
 #    NODEINFO=`ls nodeInfo*`
 #    curl -X POST -H "Authorization: Bearer $TOKEN" -H "accept: text/plain" -H "Content-Type: application/octet-stream" --data-binary @$NODEINFO http://34.76.103.90:8080/admin/api/notaries/validating
@@ -29,7 +29,7 @@ java -jar corda.jar run-migration-scripts --config-file=${CONFIG_FILE} --core-sc
 java -jar corda.jar --config-file=${CONFIG_FILE}
 
 
-curl http://34.76.103.90:8080/admin/api/nodes
+#curl http://34.76.103.90:8080/admin/api/nodes
 
 
 

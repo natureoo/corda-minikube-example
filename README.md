@@ -62,6 +62,9 @@ minikube image load cordite/network-map
 
 minikube image rm docker.io/library/corda:4.10
 
+#kubectl set cluster
+gcloud container clusters get-credentials corda-cluster-2 --region europe-west2 --project canvas-hook-339503
+
 #GKE load docker image
 gcloud auth configure-docker europe-west2-docker.pkg.dev
 
@@ -200,9 +203,9 @@ dataSource.password = "123456"
 
 kubectl get pod party-a-6dbcc679b9-fkrvw --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
 
-kubectl port-forward party-a-7979d68b5f-nz6px 20003:10003  2>&1 &
+kubectl port-forward party-a-7cc6d5997f-vv4dz 20003:10003  2>&1 &
 
-kubectl port-forward party-b-dfbbd8ffc-5tfj4 30003:10003  2>&1 &
+kubectl port-forward party-b-5798dff5fc-4ws8p 30003:10003  2>&1 &
 
 
 
@@ -218,7 +221,7 @@ flow start ProposalFlow$Initiator isBuyer: true, amount: 10, counterparty: Party
 
 run vaultQuery contractStateType: negotiation.states.ProposalState
 
-flow start AcceptanceFlow$Initiator proposalId: "3d5cce7e-538f-4202-adce-b91427600da5"
+flow start AcceptanceFlow$Initiator proposalId: "eb790047-bdc5-4400-8c8d-9cc2b3f326fa"
 
 run vaultQuery contractStateType: negotiation.states.TradeState
 

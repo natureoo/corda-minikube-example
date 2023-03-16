@@ -18,6 +18,8 @@ spec:
         env:
         - name: "CONFIG_FILE"
           value: "/config/party-a.conf"
+        - name: "ROLE"
+          value: "PARTY"
         ports:
         - containerPort: 10002
         volumeMounts:
