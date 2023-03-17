@@ -12,7 +12,7 @@ parameters:
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
-  name: podpvc
+  name: partyapvc
 spec:
   accessModes:
     - ReadWriteMany
@@ -51,33 +51,14 @@ spec:
           readOnly: true
         - name: certificates
           mountPath: /app/certificates
-        - name: mypvc
-          mountPath: /app
-#        - name: cordapps
-#          mountPath: /app/cordapps
-#      - name: web
-#        image: europe-west2-docker.pkg.dev/canvas-hook-339503/corda/corda:4.10
-#        args: ["web"]
-#        env:
-#        - name: "CONFIG_FILE"
-#          value: "/config/party-a.conf"
-#        ports:
-#        - containerPort: 10004
-#        volumeMounts:
-#        - name: config
-#          mountPath: /config
-#          readOnly: true
-#        - name: certificates
-#          mountPath: /app/certificates
+#        - name: mypvc
+#          mountPath: /app
       volumes:
       - name: certificates
         emptyDir: {}
       - name: config
         configMap:
           name: corda
-      - name: mypvc
-          persistentVolumeClaim:
-            claimName: podpvc
-#      - name: cordapps
-#        hostPath:
-#          path: /home/feil_zou/corda4/corda-minikube-example/cordapps
+#      - name: mypvc
+#          persistentVolumeClaim:
+#            claimName: partyapvc
