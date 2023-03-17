@@ -250,8 +250,19 @@ Retrieve your current kubectl context (this should have been set by the previous
 kubectl config current-context
 
 
-kubectl create -f filestore-example-class.yaml
+kubectl delete -f filestore/
+kubectl apply -f filestore/
 
-kubectl create -f pvc-example.yaml
+gcloud filestore operations list
 
-kubectl apply -f filestore-example-deployment.yaml
+gcloud filestore operations describe operation-1678982495158-5f706933542b7-7ee425b5-158cbdd2 \
+--project=canvas-hook-339503 \
+--zone=europe-west2-b
+
+sudo yum update &&
+sudo yum install nfs-utils
+
+gcloud filestore instances list --project=canvas-hook-339503 --zone=europe-west2-b
+
+mkdir -p /nfs
+mount -o rw,intr 10.166.94.170:/vol1 /nfs
