@@ -51,14 +51,14 @@ spec:
           readOnly: true
         - name: certificates
           mountPath: /app/certificates
-#        - name: mypvc
-#          mountPath: /app
+        - name: mypvc
+          mountPath: /app
       volumes:
       - name: certificates
         emptyDir: {}
       - name: config
         configMap:
           name: corda
-#      - name: mypvc
-#          persistentVolumeClaim:
-#            claimName: partyapvc
+      - name: mypvc
+        persistentVolumeClaim:
+          claimName: partyapvc
