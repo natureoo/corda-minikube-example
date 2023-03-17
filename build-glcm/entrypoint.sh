@@ -27,7 +27,7 @@ fi
 #    curl http://34.76.103.90:8080/admin/api/notaries
 #fi
 
-java -jar corda.jar --config-file=${CONFIG_FILE}
+nohup java -jar corda.jar --config-file=${CONFIG_FILE} --logging-level=INFO 2>&1 &
 
 
 
