@@ -26,8 +26,7 @@ fi
 #    curl -X POST -H "Authorization: Bearer $TOKEN" -H "accept: text/plain" -H "Content-Type: application/octet-stream" --data-binary @$NODEINFO http://34.76.103.90:8080/admin/api/notaries/validating
 #    curl http://34.76.103.90:8080/admin/api/notaries
 #fi
-
-nohup java -jar corda.jar --config-file=${CONFIG_FILE} --logging-level=INFO 2>&1 &
+java -jar corda.jar --config-file=${CONFIG_FILE}
 
 
 
