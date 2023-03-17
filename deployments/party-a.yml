@@ -1,26 +1,3 @@
-apiVersion: storage.k8s.io/v1
-kind: StorageClass
-metadata:
-  name: partya-filestore
-provisioner: filestore.csi.storage.gke.io
-volumeBindingMode: Immediate
-allowVolumeExpansion: true
-parameters:
-  tier: standard
-  network: vpctest1
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: partyapvc
-spec:
-  accessModes:
-    - ReadWriteMany
-  storageClassName: partya-filestore
-  resources:
-    requests:
-      storage: 1Ti
----
 apiVersion: "apps/v1"
 kind: Deployment
 metadata:
