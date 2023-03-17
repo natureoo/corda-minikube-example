@@ -270,3 +270,15 @@ umount /nfs
 
 umount -l /nfs
 umount -f /nfs
+
+root@instance-corda4 nfs]# ll
+total 77328
+-rw-r--r--. 1 root root 79154572 Mar 17 05:03 corda.jar
+drwxr-xr-x. 3 root root     4096 Mar 17 05:07 cordapps
+drwxr-xr-x. 2 root root     4096 Mar 17 05:06 drivers
+drwx------. 2 root root    16384 Mar 17 04:29 lost+found
+-rw-r--r--. 1 root root     1284 Mar 17 07:11 start.sh
+[root@instance-corda4 nfs]# 
+
+
+docker build -t corda-os:4.10 . -f ./os/Dockerfile --no-cache

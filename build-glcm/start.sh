@@ -1,14 +1,7 @@
 #!/bin/sh
 
-#set -eux
 
-#if [ -z "${1-}" ]; then
-#  exec java -jar corda.jar --config-file=${CONFIG_FILE} --no-local-shell --log-to-console
-#fi
-
-#exec java -jar corda-webserver.jar --config-file=${CONFIG_FILE} --log-to-console
 cd /app
-#mkdir certificates && cd certificates
 FILE=certificates
 if [ ! -f "$FILE" ]; then
     echo "$FILE does not exist."
@@ -33,9 +26,6 @@ fi
 #fi
 
 java -jar corda.jar --config-file=${CONFIG_FILE}
-
-
-#curl http://34.76.103.90:8080/admin/api/nodes
 
 
 
