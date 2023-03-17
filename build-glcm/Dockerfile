@@ -19,5 +19,5 @@ RUN apk upgrade --update && \
 
 WORKDIR /app
 
-ENTRYPOINT ["/bin/sh", "start.sh"]
+ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
 #CMD exec /bin/bash -c "trap : TERM INT; sleep 9999999999d & wait"
