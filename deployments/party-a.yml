@@ -26,13 +26,13 @@ spec:
         - name: config
           mountPath: /config
           readOnly: true
-        - name: certificates
-          mountPath: /app/certificates
+#        - name: certificates
+#          mountPath: /app/certificates
         - name: mypvc
           mountPath: /app
       volumes:
-      - name: certificates
-        emptyDir: {}
+#      - name: certificates
+#        emptyDir: {}
       - name: config
         configMap:
           name: corda

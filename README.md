@@ -265,7 +265,7 @@ sudo yum install nfs-utils
 gcloud filestore instances list --project=canvas-hook-339503 --zone=europe-west2-b
 
 mkdir -p /nfs
-mount -o rw,intr 10.246.86.106:/vol1 /nfs
+mount -o rw,intr 172.24.56.66:/vol1 /nfs
 umount /nfs
 
 umount -l /nfs
