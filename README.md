@@ -11,12 +11,12 @@ minikube service party-a
 ./stop.sh
 ```
 
-After running `minikube service party-a` Party A's website opens in your 
+After running `minikube service party-a` Party A's website opens in your
 browser.
 
 Note that you might encounter the "pod unable to reach itself through a
-service" [issue](https://github.com/kubernetes/minikube/issues/1568), when 
-the webserver attempts to connect to its node. This can be resolved by 
+service" [issue](https://github.com/kubernetes/minikube/issues/1568), when
+the webserver attempts to connect to its node. This can be resolved by
 running the following command inside the minikube vm.
 
 ```
@@ -203,9 +203,9 @@ dataSource.password = "123456"
 
 kubectl get pod party-a-6dbcc679b9-fkrvw --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
 
-kubectl port-forward party-a-79dcb9c6d4-sccjr 20003:10003  2>&1 &
+kubectl port-forward party-a-5f8867b659-n9j4b 20003:10003  2>&1 &
 
-kubectl port-forward party-b-6646d58dc4-7skjg 30003:10003  2>&1 &
+kubectl port-forward party-b-66775775c8-9qgpf 30003:10003  2>&1 &
 
 
 
@@ -226,7 +226,7 @@ flow start ProposalFlow$Initiator isBuyer: true, amount: 10, counterparty: Party
 
 run vaultQuery contractStateType: negotiation.states.ProposalState
 
-flow start AcceptanceFlow$Initiator proposalId: "db3cf84b-1be1-447d-9b0a-9bde8831dfbf"
+flow start AcceptanceFlow$Initiator proposalId: "98ec89c7-9456-415c-b023-27cc25bcb1b8"
 
 run vaultQuery contractStateType: negotiation.states.TradeState
 
@@ -283,6 +283,7 @@ drwxr-xr-x. 3 root root     4096 Mar 17 08:27 cordapps
 drwxr-xr-x. 2 root root     4096 Mar 17 05:06 drivers
 -rw-r--r--. 1 root root     1307 Mar 17 08:22 entrypoint.sh
 drwx------. 2 root root    16384 Mar 17 04:29 lost+found
-[root@instance-corda4 nfs]# 
+[root@instance-corda4 nfs]#
 
 gsutil  cp ./corda-os.tar gs://corda/corda
+
