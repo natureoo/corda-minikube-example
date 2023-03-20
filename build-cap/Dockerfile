@@ -9,4 +9,5 @@ RUN apk upgrade --update && \
 
 WORKDIR /app
 
-ENTRYPOINT ["/bin/sh", "entrypoint.sh"]
+CMD ["/bin/sh", "entrypoint.sh"]
+
