@@ -9,5 +9,8 @@ RUN apk upgrade --update && \
 
 WORKDIR /app
 
-CMD ["/bin/sh", "entrypoint.sh"]
+COPY entrypoint.sh /usr/bin/
 
+RUN chmod +x /usr/bin/entrypoint.sh
+
+ENTRYPOINT ["entrypoint.sh"]
