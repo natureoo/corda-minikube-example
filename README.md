@@ -32,10 +32,10 @@ eval $(minikube -p minikube docker-env)
 minikube image ls --format table
 
 
-docker build -t corda-os:4.10 . -f ./os/Dockerfile --no-cache
+[//]: # (docker build -t corda-os:4.9.6 . -f ./os/Dockerfile --no-cache)
 
 
-docker run --name corda-os -d corda-os:4.10
+[//]: # (docker run --name corda-os -d corda-os:4.9.6)
 
 
 docker run --name zulu-openjdk-alpine -d azul/zulu-openjdk-alpine:8u192
@@ -51,16 +51,16 @@ git remote add origin git@github.com:natureoo/corda-minikube-example.git
 
 git push https://natureoo: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@github.com/natureoo/corda-minikube-example.git
 
-https://repo1.maven.org/maven2/net/corda/corda/4.10/corda-4.10.jar
-https://repo1.maven.org/maven2/net/corda/corda/4.10/corda-4.10.jar
+https://repo1.maven.org/maven2/net/corda/corda/4.9.6/corda-4.9.6.jar
+https://repo1.maven.org/maven2/net/corda/corda/4.9.6/corda-4.9.6.jar
 
 https://repo1.maven.org/maven2/net/corda/corda-webserver/4.1/corda-webserver-4.1.jar
 
-minikube image load corda:4.10
+minikube image load corda:4.9.6
 minikube image load azul/zulu-openjdk-alpine:8u192
 minikube image load cordite/network-map
 
-minikube image rm docker.io/library/corda:4.10
+minikube image rm docker.io/library/corda:4.9.6
 
 #kubectl set cluster
 gcloud container clusters get-credentials corda-cluster-2 --region europe-west2 --project canvas-hook-339503
@@ -68,7 +68,7 @@ gcloud container clusters get-credentials corda-cluster-2 --region europe-west2 
 #GKE load docker image
 gcloud auth configure-docker europe-west2-docker.pkg.dev
 
-docker push europe-west2-docker.pkg.dev/canvas-hook-339503/corda/corda:4.10
+docker push europe-west2-docker.pkg.dev/canvas-hook-339503/corda/corda:4.9.6
 
 
 
@@ -210,7 +210,7 @@ kubectl port-forward party-b-6646d58dc4-7skjg 30003:10003  2>&1 &
 
 
 
-java -jar ./corda-shell-4.10.jar --host 127.0.0.1 --port 30003 --user user1 --password test --cordapp-directory /home/feil_zou/corda4/corda-minikube-example/build/cordapps
+java -jar ./corda-shell-4.9.6.jar --host 127.0.0.1 --port 30003 --user user1 --password test --cordapp-directory /home/feil_zou/corda4/corda-minikube-example/build/cordapps
 
 flow start ExampleFlow$Initiator iouValue: 60, otherParty: "O=PartyA,L=London,C=GB"
 
