@@ -277,10 +277,12 @@ umount -l /nfs
 umount -f /nfs
 
 [root@instance-corda4 nfs]# ll
-total 28
-drwxr-xr-x. 3 root root  4096 Mar 17 08:27 cordapps
-drwxr-xr-x. 2 root root  4096 Mar 17 05:06 drivers
--rw-r--r--. 1 root root  1307 Mar 17 08:22 entrypoint.sh
-drwx------. 2 root root 16384 Mar 17 04:29 lost+found
+total 76664
+-rw-r--r--. 1 root root 78472039 Feb 17 12:47 corda.jar
+drwxr-xr-x. 3 root root     4096 Mar 17 08:27 cordapps
+drwxr-xr-x. 2 root root     4096 Mar 17 05:06 drivers
+-rw-r--r--. 1 root root     1307 Mar 17 08:22 entrypoint.sh
+drwx------. 2 root root    16384 Mar 17 04:29 lost+found
 [root@instance-corda4 nfs]# 
 
+gsutil  cp ./corda-os.tar gs://corda/corda
