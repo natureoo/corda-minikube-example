@@ -203,7 +203,7 @@ dataSource.password = "123456"
 
 kubectl get pod party-a-6dbcc679b9-fkrvw --template='{{(index (index .spec.containers 0).ports 0).containerPort}}{{"\n"}}'
 
-kubectl port-forward party-a-79dcb9c6d4-5mdxf 20003:10003  2>&1 &
+kubectl port-forward party-a-79dcb9c6d4-sccjr 20003:10003  2>&1 &
 
 kubectl port-forward party-b-6646d58dc4-7skjg 30003:10003  2>&1 &
 
@@ -226,7 +226,7 @@ flow start ProposalFlow$Initiator isBuyer: true, amount: 10, counterparty: Party
 
 run vaultQuery contractStateType: negotiation.states.ProposalState
 
-flow start AcceptanceFlow$Initiator proposalId: "722ef7f5-8130-40b9-8b6e-a64113bb0422"
+flow start AcceptanceFlow$Initiator proposalId: "db3cf84b-1be1-447d-9b0a-9bde8831dfbf"
 
 run vaultQuery contractStateType: negotiation.states.TradeState
 
