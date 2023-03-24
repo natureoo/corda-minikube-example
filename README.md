@@ -205,7 +205,7 @@ kubectl get pod party-a-6dbcc679b9-fkrvw --template='{{(index (index .spec.conta
 
 kubectl port-forward party-a-5f8867b659-n9j4b 20003:10003  2>&1 &
 
-kubectl port-forward party-b-66775775c8-9qgpf 30003:10003  2>&1 &
+kubectl port-forward party-b-8cb85674-ldsx5 30003:10003  2>&1 &
 
 
 
@@ -226,7 +226,7 @@ flow start ProposalFlow$Initiator isBuyer: true, amount: 10, counterparty: Party
 
 run vaultQuery contractStateType: negotiation.states.ProposalState
 
-flow start AcceptanceFlow$Initiator proposalId: "98ec89c7-9456-415c-b023-27cc25bcb1b8"
+flow start AcceptanceFlow$Initiator proposalId: "14fd30d2-70b0-4dae-8017-c6edd92712fe"
 
 run vaultQuery contractStateType: negotiation.states.TradeState
 
@@ -285,5 +285,5 @@ drwxr-xr-x. 2 root root     4096 Mar 17 05:06 drivers
 drwx------. 2 root root    16384 Mar 17 04:29 lost+found
 [root@instance-corda4 nfs]#
 
-gsutil  cp ./corda-os.tar gs://corda/corda
+gsutil  cp ./zulu-openjdk-alpine.tar gs://corda/
 
